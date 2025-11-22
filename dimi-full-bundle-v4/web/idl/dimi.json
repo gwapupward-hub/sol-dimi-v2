@@ -1,0 +1,612 @@
+{
+  "version": "0.1.0",
+  "name": "dimi",
+  "address": "Dimi111111111111111111111111111111111111111",
+  "instructions": [
+    {
+      "name": "initConfig",
+      "accounts": [
+        {
+          "name": "config",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "admin",
+          "type": "publicKey"
+        }
+      ]
+    },
+    {
+      "name": "registerUser",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "displayName",
+          "type": "string"
+        },
+        {
+          "name": "roles",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "setRoles",
+      "accounts": [
+        {
+          "name": "config",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "roles",
+          "type": "u8"
+        }
+      ]
+    },
+    {
+      "name": "beatCreate",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "beat",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "title",
+          "type": "string"
+        },
+        {
+          "name": "bpm",
+          "type": "u16"
+        },
+        {
+          "name": "musicalKey",
+          "type": {
+            "array": [
+              "u8",
+              8
+            ]
+          }
+        },
+        {
+          "name": "tags",
+          "type": {
+            "vec": {
+              "array": [
+                "u8",
+                16
+              ]
+            }
+          }
+        },
+        {
+          "name": "uri",
+          "type": "string"
+        },
+        {
+          "name": "contentHash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "contentType",
+          "type": {
+            "array": [
+              "u8",
+              16
+            ]
+          }
+        },
+        {
+          "name": "byteLen",
+          "type": "u32"
+        }
+      ]
+    },
+    {
+      "name": "beatUpdate",
+      "accounts": [
+        {
+          "name": "beat",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "maybe",
+          "type": {
+            "defined": "BeatUpdateArgs"
+          }
+        }
+      ]
+    },
+    {
+      "name": "beatToggleShared",
+      "accounts": [
+        {
+          "name": "beat",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": [
+        {
+          "name": "shared",
+          "type": "bool"
+        }
+      ]
+    },
+    {
+      "name": "beatArchive",
+      "accounts": [
+        {
+          "name": "beat",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": false,
+          "isSigner": true
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "trackCreate",
+      "accounts": [
+        {
+          "name": "user",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "beat",
+          "isMut": false,
+          "isSigner": false
+        },
+        {
+          "name": "track",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        },
+        {
+          "name": "systemProgram",
+          "isMut": false,
+          "isSigner": false
+        }
+      ],
+      "args": [
+        {
+          "name": "take",
+          "type": "u16"
+        },
+        {
+          "name": "uri",
+          "type": "string"
+        },
+        {
+          "name": "contentHash",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        },
+        {
+          "name": "contentType",
+          "type": {
+            "array": [
+              "u8",
+              16
+            ]
+          }
+        },
+        {
+          "name": "byteLen",
+          "type": "u32"
+        }
+      ]
+    },
+    {
+      "name": "trackDelete",
+      "accounts": [
+        {
+          "name": "track",
+          "isMut": true,
+          "isSigner": false
+        },
+        {
+          "name": "authority",
+          "isMut": true,
+          "isSigner": true
+        }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "Config",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "admin",
+            "type": "publicKey"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "User",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "publicKey"
+          },
+          {
+            "name": "roles",
+            "type": "u8"
+          },
+          {
+            "name": "createdAt",
+            "type": "i64"
+          },
+          {
+            "name": "nextBeatId",
+            "type": "u16"
+          },
+          {
+            "name": "displayName",
+            "type": "string"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Beat",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "owner",
+            "type": "publicKey"
+          },
+          {
+            "name": "beatId",
+            "type": "u16"
+          },
+          {
+            "name": "bpm",
+            "type": "u16"
+          },
+          {
+            "name": "shared",
+            "type": "bool"
+          },
+          {
+            "name": "archived",
+            "type": "bool"
+          },
+          {
+            "name": "byteLen",
+            "type": "u32"
+          },
+          {
+            "name": "createdAt",
+            "type": "i64"
+          },
+          {
+            "name": "updatedAt",
+            "type": "i64"
+          },
+          {
+            "name": "musicalKey",
+            "type": {
+              "array": [
+                "u8",
+                8
+              ]
+            }
+          },
+          {
+            "name": "contentHash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "contentType",
+            "type": {
+              "array": [
+                "u8",
+                16
+              ]
+            }
+          },
+          {
+            "name": "title",
+            "type": "string"
+          },
+          {
+            "name": "uri",
+            "type": "string"
+          },
+          {
+            "name": "tags",
+            "type": {
+              "vec": {
+                "array": [
+                  "u8",
+                  16
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "Track",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "beat",
+            "type": "publicKey"
+          },
+          {
+            "name": "artist",
+            "type": "publicKey"
+          },
+          {
+            "name": "take",
+            "type": "u16"
+          },
+          {
+            "name": "uri",
+            "type": "string"
+          },
+          {
+            "name": "contentHash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "contentType",
+            "type": {
+              "array": [
+                "u8",
+                16
+              ]
+            }
+          },
+          {
+            "name": "byteLen",
+            "type": "u32"
+          },
+          {
+            "name": "createdAt",
+            "type": "i64"
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "BeatUpdateArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "title",
+            "type": {
+              "option": "string"
+            }
+          },
+          {
+            "name": "bpm",
+            "type": {
+              "option": "u16"
+            }
+          },
+          {
+            "name": "musicalKey",
+            "type": {
+              "option": {
+                "array": [
+                  "u8",
+                  8
+                ]
+              }
+            }
+          },
+          {
+            "name": "tags",
+            "type": {
+              "option": {
+                "vec": {
+                  "array": [
+                    "u8",
+                    16
+                  ]
+                }
+              }
+            }
+          },
+          {
+            "name": "uri",
+            "type": {
+              "option": "string"
+            }
+          },
+          {
+            "name": "contentHash",
+            "type": {
+              "option": {
+                "array": [
+                  "u8",
+                  32
+                ]
+              }
+            }
+          },
+          {
+            "name": "contentType",
+            "type": {
+              "option": {
+                "array": [
+                  "u8",
+                  16
+                ]
+              }
+            }
+          },
+          {
+            "name": "byteLen",
+            "type": {
+              "option": "u32"
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "Unauthorized",
+      "msg": "Unauthorized"
+    },
+    {
+      "code": 6001,
+      "name": "NameTooLong",
+      "msg": "Name too long"
+    },
+    {
+      "code": 6002,
+      "name": "TitleTooLong",
+      "msg": "Title too long"
+    },
+    {
+      "code": 6003,
+      "name": "UriTooLong",
+      "msg": "URI too long"
+    },
+    {
+      "code": 6004,
+      "name": "TooManyTags",
+      "msg": "Too many tags"
+    },
+    {
+      "code": 6005,
+      "name": "BeatNotShared",
+      "msg": "Beat is not shared"
+    },
+    {
+      "code": 6006,
+      "name": "BeatArchived",
+      "msg": "Beat archived"
+    },
+    {
+      "code": 6007,
+      "name": "Overflow",
+      "msg": "Overflow"
+    }
+  ]
+}
